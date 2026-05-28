@@ -1,8 +1,9 @@
 import telebot 
 from telebot import types 
 import time 
- 
-API_TOKEN = '8855645368:AAECxFgOhaQZFHp-oh107yBJM0nc1ytui_E' 
+import os
+
+API_TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(API_TOKEN) 
  
 quiz_data = [ 
@@ -185,4 +186,5 @@ def finish_quiz(chat_id, user_id):
     bot.send_message(chat_id, "Нажмите /start, чтобы попробовать свои силы снова.", reply_markup=types.ReplyKeyboardRemove()) 
 
 if __name__ == '__main__':
-    bot.infinity_polling()
+    print("Бот запущен...")
+    bot.infinity_polling(skip_pending=True)
